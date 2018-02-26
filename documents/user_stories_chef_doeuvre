@@ -1,0 +1,26 @@
+Comme un visiteur je peux :
+parcourir les posts du blog de l'association
+parcourir les actualités facebook sur la page d'accueil
+parcourir les informations de contact + map et ou formulaire contact avec envoi de mail
+parcourir la galerie d'images/la liste des événements
+afficher une image/un événement
+me register
+
+Comme un utilisateur je peux :
+me loguer
+réserver une place pour une exposition/un événement
+annuler
+parcourir mes expositions/événements à venir
+parcourir l'historique de mes expositions/événements
+
+Comme un admin je peux :
+ajouter des news dans le blog
+supprimer des news dans le blog
+éditer des news dans le blog
+ajouter une exposition/un événement
+éditer une exposition/un événement
+
+
+
+
+
