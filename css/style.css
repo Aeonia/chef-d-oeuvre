@@ -1,0 +1,52 @@
+/*
+colors : 
+#155263 bleu sombre
+#ff6f3c orange sombre
+#ff9a3c orange clair
+#ffc93c jaune
+*/
+
+
+/* General */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+label {
+	 color: #ffffff;
+}
+
+.background_color {
+	background-color: #aae4aa;
+}
+
+.title {
+	font-weight: bold;
+} 
+
+.font_color {
+	color: #ffffff;
+}
+
+.font_color a {
+	color: #ff9a3c;
+}
+
+.font_color a:hover {
+	color: #ff6f3c;
+}
+
+/* Banner */
+.banner {
+	/*display: flex;*/
+	width: 100%;
+	height: 70px;
+	background-color: #5eff00b4;
+	color: #ffffff;
+	text-align: center;
+}
+
