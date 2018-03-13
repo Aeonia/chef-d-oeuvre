@@ -7,7 +7,7 @@ require __DIR__.'/Model/model.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 
-  if (deleteSelectedTask($id)) {
+  if (deleteSelectedArticle($id)) {
   	header('Location:read.php?id=' . $id);
   	exit;
 	} else {

@@ -3,7 +3,9 @@ session_start();
 
 require __DIR__.'/Model/model.php';
 
-$articles = readAllArticles();
 $user = $_SESSION['user_id'];
 
-require __DIR__.'/View/indexview.php';
+$events = readAllEvents();
+
+
+require __DIR__.'/View/browseeventsview.php';

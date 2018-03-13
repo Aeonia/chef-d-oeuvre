@@ -32,7 +32,7 @@ function prepareStatement($sql) {
 }
 
 //Récupération de la liste des tâches
-function readAllTasks() {
+function readAllArticles() {
 	
 	$articles = [];
 	$pdo_statement = prepareStatement('SELECT * FROM articles WHERE deleted_at IS NULL');
@@ -44,14 +44,26 @@ function readAllTasks() {
 	return $articles;
 }
 
-//Récupération de la liste des tâches
-function readAllExistingTasks($userid) {
+function readAllEvents() {
 	
-	$articles = [];
-	$pdo_statement = prepareStatement('SELECT * FROM articles WHERE deleted_at IS NULL AND userid=:userid');
+	$events = [];
+	$pdo_statement = prepareStatement('SELECT * FROM events WHERE deleted_at IS NULL');
 
 	if ($pdo_statement && 
-		$pdo_statement->bindParam(':userid', $userid, PDO::PARAM_INT) &&
+		$pdo_statement->execute()) {
+		$events = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	return $events;
+}
+
+//Récupération de la liste des tâches
+function readAllExistingArticles($user_id) {
+	
+	$articles = [];
+	$pdo_statement = prepareStatement('SELECT * FROM articles WHERE deleted_at IS NULL AND user_id=:user_id');
+
+	if ($pdo_statement && 
+		$pdo_statement->bindParam(':user_id', $user_id, PDO::PARAM_INT) &&
 		$pdo_statement->execute()) {
 		$articles = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -59,7 +71,7 @@ function readAllExistingTasks($userid) {
 }
 
 //Récupération d'une ligne de la liste des tâches
-function readSelectedTask($id) {
+function readSelectedArticle($id) {
 	
 	$article = null;
 	$pdo_statement = prepareStatement('SELECT * FROM articles WHERE id=:id');
@@ -75,17 +87,34 @@ function readSelectedTask($id) {
 }
 
 //Ajout d'une nouvelle ligne dans la liste des tâches et un niveau de priorité 
-function addNewTask($title, $body, $description, $userid) {
+function addNewArticle($title, $body, $description, $user_id) {
 	
 	$pdo_statement = prepareStatement(
-		'INSERT INTO articles (title, body, description, userid) VALUES (:title, :body, :description, :userid)');
+		'INSERT INTO articles (title, body, description, user_id) VALUES (:title, :body, :description, :user_id)');
 
 	if (
 	  $pdo_statement &&
 		$pdo_statement->bindParam(':title', $title) &&
 		$pdo_statement->bindParam(':body', $body) &&
 	  $pdo_statement->bindParam(':description', $description) &&
-	  $pdo_statement->bindParam(':userid', $userid) &&
+	  $pdo_statement->bindParam(':user_id', $user_id) &&
+	  $pdo_statement->execute()
+	 ) {
+	 	return $pdo_statement;
+   }  
+}
+
+function addNewEvent($title, $body, $description, $user_id) {
+	
+	$pdo_statement = prepareStatement(
+		'INSERT INTO events (title, body, description, user_id) VALUES (:title, :body, :description, :user_id)');
+
+	if (
+	  $pdo_statement &&
+		$pdo_statement->bindParam(':title', $title) &&
+		$pdo_statement->bindParam(':body', $body) &&
+	  $pdo_statement->bindParam(':description', $description) &&
+	  $pdo_statement->bindParam(':user_id', $user_id) &&
 	  $pdo_statement->execute()
 	 ) {
 	 	return $pdo_statement;
@@ -93,7 +122,7 @@ function addNewTask($title, $body, $description, $userid) {
 }
 
 //Suppression d'une ligne de la liste des tâches
-function deleteSelectedTask($id) {
+function deleteSelectedArticle($id) {
 	
 	$pdo_statement = prepareStatement('UPDATE articles SET deleted_at = CURRENT_TIMESTAMP() WHERE id=:id');
 	
@@ -108,7 +137,7 @@ function deleteSelectedTask($id) {
 
 
 //Modification d'une activité de la liste des tâches ainsi que son niveau de priorité (WIP)   
-function editSelectedTask($id, $title, $body, $description) {
+function editSelectedArticle($id, $title, $body, $description) {
 	
 	$article = null;
 	$pdo_statement = prepareStatement('UPDATE articles SET title=:title, body=:body, description=:description WHERE id=:id');
@@ -155,15 +184,58 @@ function createNewMember($login, $password, $email) {
 }
 
 
-function deleteMember($userid) {
+function deleteMember($user_id) {
 
-	$pdo_statement = prepareStatement('DELETE FROM user WHERE userid=:userid');
+	$pdo_statement = prepareStatement('DELETE FROM user WHERE user_id=:user_id');
 	
 	if (
     $pdo_statement &&
-    $pdo_statement->bindParam(':userid', $userid, PDO::PARAM_INT) &&
+    $pdo_statement->bindParam(':user_id', $user_id, PDO::PARAM_INT) &&
     $pdo_statement->execute()
   ) {
     return $pdo_statement;
   }
 }
+
+function createNewAdminMember($login, $password, $role) {
+
+	$pdo_statement = prepareStatement('INSERT INTO user (login, password, email) VALUES (:login, :password, :email)');
+
+	if (
+  $pdo_statement &&
+  $pdo_statement->bindParam(':login', $login) &&
+  $pdo_statement->bindParam(':password', $password) &&
+  $pdo_statement->bindParam(':email', $email) &&
+  $pdo_statement->execute()
+ ) {
+ 	return $pdo_statement;
+ }
+}
+
+function addEventToAccount ($event_id, $user_id) {
+
+	$pdo_statement = prepareStatement('INSERT INTO event_user (event_id, user_id) VALUES (:event_id, :user_id)');
+	if (
+	$pdo_statement &&
+  $pdo_statement->bindParam(':user_id', $user_id) &&
+  $pdo_statement->bindParam(':event_id', $event_id) &&
+  $pdo_statement->execute()
+ ) {
+ 	return $pdo_statement;
+ }
+}
+
+function readEventOfAccount ($user_id) {
+
+	$pdo_statement = prepareStatement('SELECT * FROM event_user sc INNER JOIN events s ON s.id = sc.event_id WHERE sc.user_id=:user_id');
+	if (
+	$pdo_statement &&
+  $pdo_statement->bindParam(':user_id', $user_id) &&
+  $pdo_statement->execute()
+ ) {
+	$events_of_account = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+ 	return $events_of_account;
+ }
+}
+
+

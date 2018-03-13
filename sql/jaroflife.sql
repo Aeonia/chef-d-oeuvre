@@ -33,7 +33,7 @@ CREATE TABLE `articles` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `userid` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `priority_level` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,7 +41,7 @@ CREATE TABLE `articles` (
 -- Contenu de la table `articles`
 --
 
-INSERT INTO `articles` (`id`, `title`, `description`, `created_at`, `updated_at`, `deleted_at`, `userid`, `priority_level`) VALUES
+INSERT INTO `articles` (`id`, `title`, `description`, `created_at`, `updated_at`, `deleted_at`, `user_id`, `priority_level`) VALUES
 (1, 'partager une bière avec quelqu\'un', 'peu importe à quel point ta vie semble remplie, tu as toujours le temps de partager une bière avec quelqu\'un', '2017-11-01 17:30:20', '2017-11-16 17:59:29', '2017-11-16 17:59:29', 1, NULL),
 (2, 'page d\'enregistrement', 'Mise en place de la page d\'enregistrement pour les nouveaux utilisateurs', '2017-11-01 18:16:50', '2017-11-17 10:13:57', '2017-11-17 10:13:57', 1, NULL),
 (3, 'ranger les cailloux', 'ramasser les cailloux devant l\'entrée, et les ranger dans mon bocal', '2017-11-01 18:18:14', '2017-11-14 15:04:25', '2017-11-13 14:08:57', 1, NULL),
@@ -65,7 +65,7 @@ INSERT INTO `articles` (`id`, `title`, `description`, `created_at`, `updated_at`
 --
 
 CREATE TABLE `user` (
-  `userid` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
@@ -75,7 +75,7 @@ CREATE TABLE `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`userid`, `login`, `password`, `email`) VALUES
+INSERT INTO `user` (`user_id`, `login`, `password`, `email`) VALUES
 (1, 'kevin', 'azerty12', 'lsjdvhgpçqsg@sqfjghg.com'),
 (2, 'batman', 'batman', 'batman@gotham.com');
 
@@ -88,13 +88,13 @@ INSERT INTO `user` (`userid`, `login`, `password`, `email`) VALUES
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usertache` (`userid`);
+  ADD KEY `usertache` (`user_id`);
 
 --
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userid`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -109,7 +109,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
@@ -118,7 +118,7 @@ ALTER TABLE `user`
 -- Contraintes pour la table `articles`
 --
 ALTER TABLE `articles`
-  ADD CONSTRAINT `usertache` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `usertache` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -4,9 +4,10 @@ session_start();
 require __DIR__.'/Model/model.php';
 if (isset($_POST['title'],$_POST['description'])){
 
-$articles = addNewTask($_POST['title'], $_POST['description'], $_SESSION['userid']);
+$articles = addNewArticle($_POST['title'], $_POST['body'], $_POST['description'], $_SESSION['user_id']);
 
-if ($articles) {
+var_dump($articles);
+if ($articles){
 	header('Location:browse.php');
 	exit;
 }

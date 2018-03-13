@@ -20,7 +20,7 @@
         <a href="browse.php"><button type="button" class="btn btn-primary">Le blog</button></a>
         <a href="browseevents.php"><button type="button" class="btn btn-primary">Les événements</button></a>
         <a href="contact.php"><button type="button" class="btn btn-primary">Contact</button></a>
-        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary">Mes événements</button></a>  
+        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary">Mes événements</button></a>
         <?php if ($user == 1) {
           echo '<a href="add.php"><button type="button" class="btn btn-primary">Ajouter un article</button></a>
         <a href="addevent.php"><button type="button" class="btn btn-primary">Ajouter un événement</button></a>';
@@ -32,14 +32,13 @@
     <section>
     <div class="card-columns">
       <?php
-      foreach ($articles as $article) { ?>
+      foreach ($events_of_account as $event_of_account) { ?>
         <div class="card">
           <img class="card-img-top" src="..." alt="Card image cap">
           <div class="card-block">
-            <h4 class="card-title"><?php echo $article['title']; ?></h4>
-              <p class="card-text"><?php echo $article['description']; ?></p>
-              <a href="read.php?id=<?php echo $article['id']; ?>" class="btn btn-primary">Read More</a>
-
+            <h4 class="card-title"><?php echo $event_of_account['title']; ?></h4>
+              <p class="card-text"><?php echo $event_of_account['description']; ?></p>
+              <a href="read.php?id=<?php echo $event_of_account['id']; ?>" class="btn btn-primary">Lire</a>
           </div>
         </div>  
       <?php

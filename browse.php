@@ -5,9 +5,9 @@ session_start ();
 
 require __DIR__.'/Model/model.php';
 
-if (isset($_SESSION['userid'])) {
+if (isset($_SESSION['user_id'])) {
 
-	$articles = readAllExistingTasks($_SESSION['userid']);
+	$articles = readAllExistingArticles($_SESSION['user_id']);
 
 	if (isset($_SESSION['login'], $_SESSION['pwd'])) {
 		echo "<p class='font_color'>";
