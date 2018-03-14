@@ -5,6 +5,7 @@ session_start ();
 
 // Login
 if (isset($_SESSION['login'],$_SESSION['pwd'])){
+	$connected = $_SESSION['login'];
 	echo 'Vous êtes connecté';
 }
 	else {

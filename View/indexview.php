@@ -9,27 +9,38 @@
   </head>
   <!-- Banner -->
   <body class="background_color">
-    <header class="banner">
-        <h1 class="title">Musée</h1>
-    </header>
-
-    <nav class="container-fluid">
-      <nav class="row">
-        <a href="register.php"><button type="button" class="btn btn-outline-primary">Register</button></a>
-        <a href="login.php"><button type="button" class="btn btn-primary">Login</button></a>
-        <a href="browse.php"><button type="button" class="btn btn-primary">Le blog</button></a>
-        <a href="browseevents.php"><button type="button" class="btn btn-primary">Les événements</button></a>
-        <a href="contact.php"><button type="button" class="btn btn-primary">Contact</button></a>
-        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary">Mes événements</button></a>  
-        <?php if ($user == 1) {
+  <div class="row justify-content-between">
+  <div class="col-4">
+    <nav class="nav nav-pills">
+      <a href="register.php"><button type="button" class="btn btn-outline-primary">Register</button></a>
+      <a href="login.php"><button type="button" class="btn btn-primary">Login</button></a>
+    </nav>  
+  </div>  
+  <div class="col-4"> 
+    <nav class="nav nav-pills">
+      <?php if ($user == 1) {
           echo '<a href="add.php"><button type="button" class="btn btn-primary">Ajouter un article</button></a>
         <a href="addevent.php"><button type="button" class="btn btn-primary">Ajouter un événement</button></a>';
         }    
         ?>
-      </nav>
-    </nav>
-
+    </nav> 
+   </div> 
+   </div>
+  </div>   
+    <div class="col-8 offset-md-2" id="header">
+    <header class="banner">
+        <h1 class="title">Musée</h1>
+    </header>
+    <div class="btn-group-vertical">
+        <a href="browse.php"><button type="button" class="btn btn-primary">Le blog</button></a>
+        <a href="browseevents.php"><button type="button" class="btn btn-primary">Les événements</button></a>
+        <a href="contact.php"><button type="button" class="btn btn-primary">Contact</button></a>
+        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary">Mes événements</button></a>  
+    </div>
+    </div>
     <section>
+    <div class="row">
+    <div class="col-8 offset-md-2">
     <div class="card-columns">
       <?php
       foreach ($articles as $article) { ?>
@@ -45,6 +56,8 @@
       <?php
       }
       ?>
+    </div>
+    </div>
     </div> 
     </section>
    

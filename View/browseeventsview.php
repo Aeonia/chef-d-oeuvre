@@ -21,7 +21,7 @@
         <a href="browseevents.php"><button type="button" class="btn btn-primary">Les événements</button></a>
         <a href="contact.php"><button type="button" class="btn btn-primary">Contact</button></a>
         <a href="browseaccountevents.php"><button type="button" class="btn btn-primary">Mes événements</button></a>
-        <?php if ($user == 1) {
+        <?php if (isset($user) && $user == 1) {
           echo '<a href="add.php"><button type="button" class="btn btn-primary">Ajouter un article</button></a>
         <a href="addevent.php"><button type="button" class="btn btn-primary">Ajouter un événement</button></a>';
         }    
