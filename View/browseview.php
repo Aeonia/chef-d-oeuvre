@@ -26,7 +26,6 @@
       <?php
         }
       ?>
-        <li class="font_color"><a href="add.php">ajouter un nouvel article</a></li>
       </ul>
       <a href="index.php">retour à la page d'accueil</a>
     </section>

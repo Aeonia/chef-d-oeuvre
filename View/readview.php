@@ -14,11 +14,15 @@
         <h1><?php echo $article['title']; ?></h1>
       </header>
       <p class="font_color"><?php echo $article['description']; ?></p>
+      <?php if ($user == 1) {
+          echo '
       <ul class="font_color">
-        <li><a href="edit.php?id=<?php echo $article['id']; ?>">modifier cet article</a></li>
-        <li><a href="delete.php?id=<?php echo $article['id']; ?>">supprimer cet article</a></li>
+        <li><a href="edit.php?id='. $article['id'].'">modifier cet article</a></li>
+        <li><a href="delete.php?id='. $article['id'].'">supprimer cet article</a></li>
         <li><a href="browse.php">retour à la liste</a></li>
-      </ul>
+      </ul>';
+      }
+      ?>
     </section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

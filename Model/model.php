@@ -56,7 +56,7 @@ function readAllEvents() {
 	return $events;
 }
 
-//Récupération de la liste des tâches
+
 function readAllExistingArticles($user_id) {
 	
 	$articles = [];
@@ -70,7 +70,7 @@ function readAllExistingArticles($user_id) {
 	return $articles;
 }
 
-//Récupération d'une ligne de la liste des tâches
+
 function readSelectedArticle($id) {
 	
 	$article = null;

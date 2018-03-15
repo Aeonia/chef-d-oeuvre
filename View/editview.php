@@ -11,18 +11,25 @@
   <body class="background_color">
     <nav>
       <header class="banner">
-        <h1 class="title">Modifier une activité</h1>
+        <h1 class="title">Modifier un article</h1>
       </header>
-       <form action="" method="post">
+       <form action="edit.php" method="post">
         <div>
           <label>
-            Nom de l'activité :
+            Nom de l'article :
             <input type="text" name="title" value="<?php echo $article['title']; ?>">
           </label>
         </div>
         <div>
           <label>
-            Description de l'activité:
+            Corps de l'article:
+            <textarea name="body"><?php echo $article['body']; ?>
+            </textarea>
+          </label>
+        </div>
+        <div>
+          <label>
+            Description de l'article:
             <textarea name="description"><?php echo $article['description']; ?>
             </textarea>
           </label>
