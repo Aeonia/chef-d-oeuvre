@@ -1,26 +1,26 @@
 <?php ob_start() ; ?> 
     <nav>
       <header class="banner">
-        <h1 class="title">Modifier un article</h1>
+        <h1 class="title">Modifier un event</h1>
       </header>
-       <form action="edit.php?id=<?= $id ?>" method="post">
+       <form action="editevents.php?id=<?= $id ?>" method="post">
         <div>
           <label>
-            Nom de l'article :
-            <input type="text" name="title" value="<?php echo $article['title']; ?>">
+            Nom de l'événement :
+            <input type="text" name="title" value="<?php echo $event['title']; ?>">
           </label>
         </div>
         <div>
           <label>
-            Corps de l'article:
-            <textarea name="body"><?php echo $article['body']; ?>
+            Corps de l'événement:
+            <textarea name="body"><?php echo $event['body']; ?>
             </textarea>
           </label>
         </div>
         <div>
           <label>
-            Description de l'article:
-            <textarea name="description"><?php echo $article['description']; ?>
+            Description de l'événement:
+            <textarea name="description"><?php echo $event['description']; ?>
             </textarea>
           </label>
         </div>
@@ -29,8 +29,8 @@
         </div>
       </form>
       <ul class="font_color">
-        <li><a href="read.php?id=<?php echo $article['id']; ?>">annuler</a></li>
-        <li><a href="browse.php">retour à la liste</a></li>
+        <li><a href="read.php?id=<?php echo $event['id']; ?>">annuler</a></li>
+        <li><a href="browseevents.php">retour à la liste</a></li>
       </ul>
     </nav>
 

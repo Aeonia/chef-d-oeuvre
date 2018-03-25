@@ -1,13 +1,13 @@
 <?php ob_start() ; ?> 
     <section>
       <header class="banner">
-        <h1><?php echo $article['title']; ?></h1>
+        <h1><?php echo $event['title']; ?></h1>
       </header>
-        <p><?php echo $article['description']; ?></p>
+        <p><?php echo $event['description']; ?></p>
         <ul>
-          <li><a href="add.php?id=<?php echo $article['id']; ?>">modifier cette activité</a></li>
-          <li><a href="delete.php?id=<?php echo $article['id']; ?>">supprimer cette activité</a></li>
-          <li><a href="browse.php">retour à votre liste</a></li>
+          <li><a href="addevent.php?id=<?php echo $event['id']; ?>">modifier cette activité</a></li>
+          <li><a href="deleteevents.php?id=<?php echo $event['id']; ?>">supprimer cette activité</a></li>
+          <li><a href="browseevents.php">retour à votre liste</a></li>
         </ul>
     </section>
 

@@ -86,6 +86,22 @@ function readSelectedArticle($id) {
   return $article;
 }
 
+
+function readSelectedEvent($id) {
+	
+	$event = null;
+	$pdo_statement = prepareStatement('SELECT * FROM events WHERE id=:id');
+
+	if (
+  	$pdo_statement &&
+  	$pdo_statement->bindParam(':id', $id, PDO::PARAM_INT) &&
+  	$pdo_statement->execute()
+	) {
+  	$event = $pdo_statement->fetch(PDO::FETCH_ASSOC);
+	}
+  return $event;
+}
+
 //Ajout d'une nouvelle ligne dans la liste des tâches et un niveau de priorité 
 function addNewArticle($title, $body, $description, $user_id) {
 	
@@ -100,8 +116,9 @@ function addNewArticle($title, $body, $description, $user_id) {
 	  $pdo_statement->bindParam(':user_id', $user_id) &&
 	  $pdo_statement->execute()
 	 ) {
-	 	return $pdo_statement;
-   }  
+	 	return true;
+	 }  
+	 return false;
 }
 
 function addNewEvent($title, $body, $description, $user_id) {
@@ -135,6 +152,19 @@ function deleteSelectedArticle($id) {
   }
 }
 
+function deleteSelectedEvent($id) {
+	
+	$pdo_statement = prepareStatement('UPDATE events SET deleted_at = CURRENT_TIMESTAMP() WHERE id=:id');
+	
+	if (
+    !$pdo_statement ||
+    !$pdo_statement->bindParam(':id', $id, PDO::PARAM_INT) ||
+    !$pdo_statement->execute()
+  ) {
+    return $pdo_statement;
+  }
+}
+
 
 //Modification d'une activité de la liste des tâches ainsi que son niveau de priorité (WIP)   
 function editSelectedArticle($id, $title, $body, $description) {
@@ -152,6 +182,24 @@ function editSelectedArticle($id, $title, $body, $description) {
 	) {
 	  $article = $pdo_statement->fetch(PDO::FETCH_ASSOC);
 	  return $article;
+	}
+}
+
+function editSelectedEvent($id, $title, $body, $description) {
+	
+	$event = null;
+	$pdo_statement = prepareStatement('UPDATE events SET title=:title, body=:body, description=:description WHERE id=:id');
+
+	if (
+	  $pdo_statement &&
+	  $pdo_statement->bindParam(':id', $id, PDO::PARAM_INT) &&
+		$pdo_statement->bindParam(':title', $title) &&
+		$pdo_statement->bindParam(':body', $body) &&
+	  $pdo_statement->bindParam(':description', $description) &&
+	  $pdo_statement->execute()
+	) {
+	  $event = $pdo_statement->fetch(PDO::FETCH_ASSOC);
+	  return $event;
 	}
 }
 

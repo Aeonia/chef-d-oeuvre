@@ -1,9 +1,11 @@
 <?php
 
-require __DIR__.'/Model/model.php';
-
 session_start ();
 
+require __DIR__.'/Model/model.php';
+
+
+$user = isset($_SESSION['user_id']);
 // Register 
 if (isset($_POST['register'])) {
 
@@ -17,10 +19,10 @@ if (isset($_POST['register'])) {
 			$newUser = createNewMember($login_register, $password_register, $email_register);
 
 			if ($newUser) {
-				header('location: index.html');
+				header('location: index.php');
 			}
 		} else {
-			header('location: index.html');
+			header('location: index.php');
 		}
 	} else {
 		echo "Veuillez entrer un login/password/email valide";

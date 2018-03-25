@@ -1,7 +1,11 @@
 <?php
 
-require __DIR__.'/Model/model.php';
 session_start ();
+
+require __DIR__.'/Model/model.php';
+
+
+$user = isset($_SESSION['user_id']);
 
 // Login
 if (isset($_SESSION['login'],$_SESSION['pwd'])){

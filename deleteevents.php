@@ -8,12 +8,12 @@ $user = isset($_SESSION['user_id']);
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 
-  if (deleteSelectedArticle($id)) {
-  	header('Location:read.php?id=' . $id);
+  if (deleteSelectedEvent($id)) {
+  	header('Location:readevent.php?id=' . $id);
   	exit;
 	} else {
-		header('Location:browse.php');
+		header('Location:browseevents.php');
 	}
 }
 
-require __DIR__.'/View/deleteview.php';
+require __DIR__.'/View/deleteeventview.php';
