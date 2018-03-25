@@ -4,7 +4,7 @@
         <h1><?php echo $event['title']; ?></h1>
       </header>
       <p class="font_color"><?php echo $event['description']; ?></p>
-      <?php if ($user == 1) {
+      <?php if ((isset($user)) && $user == 1) {
           echo '
       <ul class="font_color">
         <li><a href="editevents.php?id='. $event['id'].'">modifier cet article</a></li>

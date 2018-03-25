@@ -19,7 +19,6 @@
                     ?>
             </div>
             <div class="col-md-3 tall">
-              <h4>Notre actualité</h4>
               <div class="sticky">
                 <div class="fb-page" data-href="https://www.facebook.com/Entrenoobcom-545811422416949/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/Entrenoobcom-545811422416949/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Entrenoobcom-545811422416949/">Entrenoob.com</a></blockquote></div>           
               </div>

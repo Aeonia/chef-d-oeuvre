@@ -64,6 +64,7 @@ h1 {
 	margin-bottom: 0.5em;
 	margin-top: 0.5em;
 	width : auto;
+	padding: 0.5em;
 }
 
 section {
@@ -99,8 +100,8 @@ section {
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	color: #ffffff;
-	background-color: rgb(0, 155, 121);
-	border-color: rgb(0, 155, 121);
+	background-color: #778e92 !important ;
+	border: 0px;
 
 }
 
@@ -111,10 +112,16 @@ section {
 
 #button-top:active {
 	border-color: #778e92 !important;
+	text-decoration-line: underline;
+	text-decoration-style: double;
+
+}
+
+a {
+	border: 0px !important;
 }
 
 .sticky {
-	position: sticky !important;
 	top: 20 px;
 }	
 
@@ -139,12 +146,6 @@ section {
 	top: 1em;
 }
 
-.btn-primary, .btn-secondary{
-	background-color: #778e92 !important ;
-	border-color: #778e92 !important ;
-}
-
-.btn-primary:active, .btn-secondary:active{
-	background-color: #778e92 !important ;
-	border-color: #778e92 !important ;
+.btn-primary {
+	background-color: #778e92 !important;
 }

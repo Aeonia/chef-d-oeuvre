@@ -23,20 +23,21 @@
   <body class="background_color">     
     <div id="banner">
     <div class="btn-group  float-right" id="login">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php if ($user) { echo "Logout";} else { echo "Login";} ?>
+          <button type="button" class="btn btn-secondary dropdown-toggle btn-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php if (isset($user)) { echo "Logout";} else { echo "Login";} ?>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
-          <?php if (!$user) {
+          <?php if (!isset($user)) {
               echo '<a href="register.php"><button type="button" class="btn btn-outline-primary" id="button-top">Register</button></a>';
             }    
             ?>
-              <a href="login.php"><button type="button" class="btn btn-primary" id="button-top"><?php if ($user) { echo "Déconnexion";} else { echo "Connexion";} ?></button></a>
+              <a href="login.php"><button type="button" class="btn btn-primary" id="button-top"><?php if (isset($user)) { echo "Déconnexion";} else { echo "Connexion";} ?></button></a>
 
-              <?php if ($user == 1) {
+              <?php if ((isset($user)) && $user == 1) {
+                
                   echo '<a href="add.php"><button type="button" class="btn btn-primary" id="button-top">Ajouter un article</button></a>
                 <a href="addevent.php"><button type="button" class="btn btn-primary" id="button-top">Ajouter un événement</button></a>';
-                }    
+                }
                 ?>
           </div>
       </div>  
@@ -46,10 +47,10 @@
     <ul class="nav justify-content-left">
         <p class="title">Musée</p>
     <div class="btn-group-horizontal">
-        <a href="browse.php"><button type="button" class="btn btn-primary" id="button-top">Le blog</button></a>
-        <a href="browseevents.php"><button type="button" class="btn btn-primary" id="button-top">Les événements</button></a>
-        <a href="contact.php"><button type="button" class="btn btn-primary" id="button-top">Contact</button></a>
-        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary" id="button-top">Mes événements</button></a>  
+        <a href="browse.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Le blog</button></a>
+        <a href="browseevents.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Les événements</button></a>
+        <a href="contact.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Contact</button></a>
+        <a href="browseaccountevents.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Mes événements</button></a>  
     </div>
       </ul>
     </div>
@@ -57,8 +58,9 @@
     </div>
 
     <?php 
-            // On ecrit le contenu de la varibale $contenu recupere precedemment 
+  
             echo $content ; 
             ?>
-
-    </html>
+ <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><i class="fas fa-angle-double-up"></i></a>
+ <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script> 
+ </html>

@@ -25,4 +25,5 @@
 $content = ob_get_clean(); ?>
 
 
-<?php include 'templateview.php'; ?>
+<?php include 'templateview.php'; 
+?>
