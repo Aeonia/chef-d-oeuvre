@@ -77,8 +77,6 @@
 </section>
 <!--Section: Contact v.2-->
 
-        
-
 </body>
 </html>
 
@@ -87,3 +85,5 @@ $content = ob_get_clean(); ?>
 
 
 <?php include 'templateview.php'; ?>
+
+

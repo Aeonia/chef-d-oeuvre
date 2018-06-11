@@ -1,5 +1,6 @@
  <?php
  //Initialisation du PDO et récupération de la config
+
 function initializePdo() {
 	
 	try {
@@ -17,7 +18,7 @@ function initializePdo() {
 
 //Préparation de la requête SQL
 function prepareStatement($sql) {
-	
+	//renvoi un objet pdostatement, false ou l'exception stoppée par try catch
 	$pdo_statement = null;
 	$pdo = initializePdo();
 
@@ -31,7 +32,7 @@ function prepareStatement($sql) {
 	return $pdo_statement;
 }
 
-//Récupération de la liste des tâches
+//gets all articles
 function readAllArticles() {
 	
 	$articles = [];
@@ -44,6 +45,7 @@ function readAllArticles() {
 	return $articles;
 }
 
+//gets all events
 function readAllEvents() {
 	
 	$events = [];
@@ -56,7 +58,7 @@ function readAllEvents() {
 	return $events;
 }
 
-
+//gets all articles for of a certain user
 function readAllExistingArticles($user_id) {
 	
 	$articles = [];
@@ -70,7 +72,7 @@ function readAllExistingArticles($user_id) {
 	return $articles;
 }
 
-
+//gets the selected article
 function readSelectedArticle($id) {
 	
 	$article = null;
@@ -86,7 +88,7 @@ function readSelectedArticle($id) {
   return $article;
 }
 
-
+//gets the selected event
 function readSelectedEvent($id) {
 	
 	$event = null;
@@ -102,7 +104,7 @@ function readSelectedEvent($id) {
   return $event;
 }
 
-//Ajout d'une nouvelle ligne dans la liste des tâches et un niveau de priorité 
+//adds a new article
 function addNewArticle($title, $body, $description, $user_id) {
 	
 	$pdo_statement = prepareStatement(
@@ -121,6 +123,7 @@ function addNewArticle($title, $body, $description, $user_id) {
 	 return false;
 }
 
+//adds a new event
 function addNewEvent($title, $body, $description, $user_id) {
 	
 	$pdo_statement = prepareStatement(
@@ -135,10 +138,10 @@ function addNewEvent($title, $body, $description, $user_id) {
 	  $pdo_statement->execute()
 	 ) {
 	 	return $pdo_statement;
-   }  
+   }  //if false return NULL by default
 }
 
-//Suppression d'une ligne de la liste des tâches
+//deletes a selected article 
 function deleteSelectedArticle($id) {
 	
 	$pdo_statement = prepareStatement('UPDATE articles SET deleted_at = CURRENT_TIMESTAMP() WHERE id=:id');
@@ -152,6 +155,7 @@ function deleteSelectedArticle($id) {
   }
 }
 
+//deletes a selected event (soft delete)
 function deleteSelectedEvent($id) {
 	
 	$pdo_statement = prepareStatement('UPDATE events SET deleted_at = CURRENT_TIMESTAMP() WHERE id=:id');
@@ -166,7 +170,7 @@ function deleteSelectedEvent($id) {
 }
 
 
-//Modification d'une activité de la liste des tâches ainsi que son niveau de priorité (WIP)   
+//edits the selected article 
 function editSelectedArticle($id, $title, $body, $description) {
 	
 	$article = null;
@@ -185,6 +189,7 @@ function editSelectedArticle($id, $title, $body, $description) {
 	}
 }
 
+//edits the selected event
 function editSelectedEvent($id, $title, $body, $description) {
 	
 	$event = null;
@@ -203,7 +208,7 @@ function editSelectedEvent($id, $title, $body, $description) {
 	}
 }
 
-
+//connects a member
 function connectMember($login, $password) {
 	
 	$pdo_statement = prepareStatement('SELECT * FROM user WHERE login=:login AND password=:password');
@@ -215,36 +220,36 @@ function connectMember($login, $password) {
 	return $result;
 }
 
-
+//creates a new member
 function createNewMember($login, $password, $email) {
 
-	$pdo_statement = prepareStatement('INSERT INTO user (login, password, email) VALUES (:login, :password, :email)');
+	$pdo_statement = prepareStatement('INSERT INTO user (login, password, email) VALUES (:login, :password, :email)'); //on appel la fonction prepareSatatement qui retourne l'instance de pdo_statement que la prepare a créé
 
-	if (
+	if ( //EMBRANCHEMENT IF
   $pdo_statement &&
-  $pdo_statement->bindParam(':login', $login) &&
+  $pdo_statement->bindParam(':login', $login) && //a faire avant le execute
   $pdo_statement->bindParam(':password', $password) &&
   $pdo_statement->bindParam(':email', $email) &&
   $pdo_statement->execute()
  ) {
- 	return $pdo_statement;
+ 	return $pdo_statement; 
  }
 }
 
-
+//delete the selected member
 function deleteMember($user_id) {
 
 	$pdo_statement = prepareStatement('DELETE FROM user WHERE user_id=:user_id');
 	
 	if (
     $pdo_statement &&
-    $pdo_statement->bindParam(':user_id', $user_id, PDO::PARAM_INT) &&
+    $pdo_statement->bindParam(':user_id', $user_id, PDO::PARAM_INT)/*return true on success or false on failure*/ &&
     $pdo_statement->execute()
   ) {
     return $pdo_statement;
   }
 }
-
+//todo : add roles to define an admin member
 function createNewAdminMember($login, $password, $role) {
 
 	$pdo_statement = prepareStatement('INSERT INTO user (login, password, email) VALUES (:login, :password, :email)');
@@ -260,6 +265,7 @@ function createNewAdminMember($login, $password, $role) {
  }
 }
 
+//adds an event to an account
 function addEventToAccount ($event_id, $user_id) {
 
 	$pdo_statement = prepareStatement('INSERT INTO event_user (event_id, user_id) VALUES (:event_id, :user_id)');
@@ -273,6 +279,7 @@ function addEventToAccount ($event_id, $user_id) {
  }
 }
 
+//gets all events of a user
 function readEventOfAccount ($user_id) {
 
 	$pdo_statement = prepareStatement('SELECT * FROM event_user sc INNER JOIN events s ON s.id = sc.event_id WHERE sc.user_id=:user_id');

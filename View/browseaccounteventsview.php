@@ -11,7 +11,7 @@
           <div class="card-block">
             <h4 class="card-title">'.$event_of_account['title'] .'</h4>
               <p class="card-text">'.$event_of_account['description'] .'</p>
-              <a href="read.php?id='.$event_of_account['id'] .'" class="btn btn-primary">Lire</a>
+              <a href="readevent.php?id='.$event_of_account['id'] .'" class="btn btn-primary">Lire</a>
           </div>
         </div>'; 
       }
@@ -21,7 +21,7 @@
     </div> 
     </section>';
     } else {
-      echo 'vous devez être connecté pour accéder à vos événements';
+      echo 'Vous devez être connecté pour accéder à vos événements';
     }
    ?>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -119,6 +119,11 @@ section {
 
 a {
 	border: 0px !important;
+	color:#ffffff !important; 
+}
+
+a:hover {
+	text-decoration-line: none !important;
 }
 
 .sticky {
@@ -148,4 +153,29 @@ a {
 
 .btn-primary {
 	background-color: #778e92 !important;
+}
+
+.event-body, .event-description, .event-title {
+	margin-right: 20%;
+	margin-left: 20%;
+}
+
+.event-title {
+	color: #aaa;
+	font-weight: bold;
+
+}
+
+.event-body {
+	margin-top: 3em;
+}
+
+.event-description {
+	margin-top: 1em;
+	color: rgb(78, 75, 75)
+}
+
+
+.modifications {
+	color: #778e92 !important;
 }

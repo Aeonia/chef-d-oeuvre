@@ -45,7 +45,7 @@
         
     </header>
     <ul class="nav justify-content-left">
-        <p class="title">Musée</p>
+    <a href="index.php"><p class="title">Musée</p></a>
     <div class="btn-group-horizontal">
         <a href="browse.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Le blog</button></a>
         <a href="browseevents.php"><button type="button" class="btn btn-primary btn-nav" id="button-top">Les événements</button></a>

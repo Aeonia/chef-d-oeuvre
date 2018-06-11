@@ -1,15 +1,15 @@
 <?php ob_start() ; ?> 
     <section>
-      <header class="banner">
-        <h1><?php echo $event['title']; ?></h1>
-      </header>
-      <p class="font_color"><?php echo $event['description']; ?></p>
+      <h2 class="event-title"><?php echo $event['title']; ?></h2> 
+      <p class="event-description"><?php echo $event['description']; ?></p>
+      <hr></hr>
+      <p class="event-body"><?php echo $event['body']; ?></p>
       <?php if ((isset($user)) && $user == 1) {
           echo '
-      <ul class="font_color">
-        <li><a href="editevents.php?id='. $event['id'].'">modifier cet article</a></li>
-        <li><a href="deleteevents.php?id='. $event['id'].'">supprimer cet article</a></li>
-        <li><a href="browseevents.php">retour à la liste</a></li>
+      <ul class="modifications">
+        <li><a href="editevents.php?id='. $event['id'].'" class="modifications">modifier cet article</a></li>
+        <li><a href="deleteevents.php?id='. $event['id'].'" class="modifications">supprimer cet article</a></li>
+        <li><a href="browseevents.php" class="modifications">retour à la liste</a></li>
       </ul>';
       }
       ?>
